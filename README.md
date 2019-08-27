@@ -1,0 +1,1 @@
+Computer Software 전공 기본 공부 및 면접 준비 레파지토리입니다.
