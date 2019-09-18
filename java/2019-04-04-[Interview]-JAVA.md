@@ -2,12 +2,12 @@
 
 > 지금까지 기술 면접에서 받은 질문들과 자바를 공부하며 중요한 개념이라고 생각한 키워드를 정리하고 설명은 추가해 나가기
 
-- [자바 언어의 특징](#자바_언어의_특징)
-- [자바 언어 == 객체지향](#자바_언어와_객체_지향) 
+- [자바 언어의 특징](#user-content-자바-언어의-특징)
+- [자바 언어 == 객체지향](#user-content-자바-언어와-객체-지향) 
 - 객체 지향 설명 및 절차지향, 함수적 프로그래밍에 대한 설명
 - JAVA SE와 EE의 차이점 
 - JRE와 JDK 차이 설명
-- [Garbage Collection](#Garbage_Collection)
+- [Garbage Collection](#user-content-garbage-collection)
 - 컴파일 과정에 대한 설명
 - 자바 1.8을 사용한 이유
 - 자바 1.8버전에서 달라진 점
