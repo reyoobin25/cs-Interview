@@ -4,7 +4,7 @@
 
 - [자바 언어의 특징](#user-content-자바-언어의-특징)
 - [자바 언어 == 객체지향](#user-content-자바-언어와-객체-지향) 
-- 객체 지향 설명 및 절차지향, 함수적 프로그래밍에 대한 설명
+- [객체 지향 설명 및 절차지향, 함수적 프로그래밍에 대한 설명](#user-content-함수형-프로그래밍)
 - JAVA SE와 EE의 차이점 
 - JRE와 JDK 차이 설명
 - [Garbage Collection](#user-content-garbage-collection)
@@ -21,7 +21,7 @@
 - 메모리 영역 설명
 - String, StringBuffer, StringBuilder
 - final, finalize, finally
-- call by value, call by reference
+- [call by value, call by reference](#user-content-call-by-value-vs-call-by-reference)
 - Collection api설명
 - Synchronized 
 - Equals메소드
@@ -108,7 +108,89 @@
 
 
 
+## 함수형 프로그래밍
 
+### 함수형 프로그래밍?
+
+자료 처리를 수학적 함수의 계산으로 취급하는 프로그래밍 패러다임.
+
+`P(x) = f º g º h º ...`  이런 모양으로 
+
+
+
+### 함수형 프로그래밍 키워드
+
+- Immutable DataStructure 
+
+  - 원본 데이터에 대해 변경을 일으키지 않는다.
+
+  - 데이터 변경이 필요한 경우, 원본 데이터에서 복사를 한 후 변경한다.
+
+    ```java
+    Number number = new Number(3);
+    
+    System.out.println(addThree(number).getNum());//6
+    
+    System.out.println(number.getNum()); //3
+    
+    public Number addThree(Number number){
+    	return new Number(number.getNum()+3);
+    }
+    ```
+
+- Pure Function
+
+  - 언제 어디서든 같은 입력에 같은 결과를 출력하는 함수
+
+    ```java
+    String name = "Minsoo";
+    System.out.println(helloMethod(name)); //helloo Minsoo
+    System.out.println(helloMethod(name)); //hello Minsoo
+    System.out.println(name); //Minsoo
+    ...
+        
+    public String helloMethod(String name) {
+            return "hello " + name;
+    }
+    ```
+
+  - 순수함수가 아닌 경우
+
+    ```java
+    System.out.println(getSecond());
+    System.out.println(getSecond());
+    System.out.println(getSecond());
+    
+      
+    public int getSecond() {
+        return new Date().getSeconds();
+    }
+    ```
+
+    
+
+### 왜 함수형 프로그래밍을 배우는가
+
+1. 불필요한 코드를 줄일 수 있다 / 코드의 가독성이 좋아진다 
+
+   ```java
+   // 명령형 (어떻게에 집중)
+   public Map<Integer, Integer> numberOfWordsPerLengthImperative(List<String> words){
+       Map<Integer,Integer> result = new HashMap<>();
+       for(int i=0;i<words.size();i++){
+           int key = words.get(i).length();
+           result.put(key,result.getOrDefault(key,0)+1);
+       }
+   }
+   // 함수형 (무엇에 집중)
+   public Map<Integer,Integer> numberOfWordsPerLengthFunctional(List<String> words){
+       return words.stream().collect(Collectors.groupingBy(String::length,Collecors.counting()));
+   }
+   ```
+
+2. 순수 함수는 테스트를 용이하게 만든다. (같은 입력에는 항상 같은 결과를 배출하므로)
+
+   
 
 ## Garbage Collection
 
@@ -159,3 +241,23 @@
 ### Permanent Generation 영역
 
 ...
+
+
+
+
+
+
+
+
+
+## Call by Value vs Call by Reference
+
+|        | Call by value                                                | Call by reference                                            |
+| :----: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+|  정의  | 함수를 호출하는 동안, 복사한 변수들의 값을 전달하는 것       | 함수를 호출하는 동안, 변수들의 주소를 복사하여 전달하는 것.  |
+|  효과  | 변수 사본에서 변경된 사항은 함수 외부의 변수 값을 수정하지 않는다. | 변수의 변경은 함수 외부의 변수 값에 영향을 준다.             |
+|  전달  |                                                              | 변수의 주소를 저장하기 위한 포인터 변수 필요                 |
+| 메모리 | 복사하기 위한 메모리 공간 필요                               | 기존의 메모리 공간                                           |
+|  장점  | 실제 변수에 어떠한 영향도 미치지 않는다                      | 변수 값을 변경할 수 있다. <br />복사하기 위한 메모리 공간이 필요없다.<br /> |
+|  단점  | 변수에 대해 복사를 해야 하므로 메모리가 효율적이지 않다.     | Null 검사를 해야한다.<br />순수 함수가 아니다.<br />멀티스레드 프로그램에서 위험 요소가 될 수 있다. |
+
