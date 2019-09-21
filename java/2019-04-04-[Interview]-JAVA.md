@@ -6,7 +6,7 @@
 - [자바 언어 == 객체지향](#user-content-자바-언어와-객체-지향) 
 - [객체 지향 설명 및 절차지향, 함수적 프로그래밍에 대한 설명](#user-content-함수형-프로그래밍)
 - JAVA SE와 EE의 차이점 
-- JRE와 JDK 차이 설명
+- [JRE와 JDK 차이 설명](#user-content-jre-vs-jdk)
 - [Garbage Collection](#user-content-garbage-collection)
 - 컴파일 과정에 대한 설명
 - 자바 1.8을 사용한 이유
@@ -191,6 +191,20 @@
 2. 순수 함수는 테스트를 용이하게 만든다. (같은 입력에는 항상 같은 결과를 배출하므로)
 
    
+
+## JRE vs JDK
+
+JRE (Java Runtime Environment) : 자바 **실행 환경**
+
+JVM이 자바 프로그램을 동작시킬 때 필요한 라이브러리 파일들과 기타 파일들을 가지고 있다.
+
+
+
+JDK (Java Development Kit) : 자바 **개발 도구**
+
+JRE + 개발을 위해 필요한 javac나 java 등을 포함한다 
+
+
 
 ## Garbage Collection
 
