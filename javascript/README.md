@@ -169,7 +169,7 @@ lee.eyes // 2
 
 자바스크립트 엔진들이 소스 코드를 기계어로 만들기까지 공통적을 수행하는 과정
 
-![](../img/js-engine-pipeline.PNG)
+![](./img/js-engine-pipeline.PNG)
 
 1. 자바스크립트코드가 자바스크립트 엔진(parser)에 의해 추상 구문 트리(AST)로 만들어진다.
 2. 인터프리터가 AST를 기반으로 바이트 코드를 생성 
