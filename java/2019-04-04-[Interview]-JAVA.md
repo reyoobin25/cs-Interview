@@ -20,7 +20,7 @@
 - 오버로딩, 오버라이딩 
 - 직렬화, 역직렬화
 - 메모리 영역 설명
-- String, StringBuffer, StringBuilder
+- [String, StringBuffer, StringBuilder](#user-content-string-stringbuffer-stringbuilder)
 - final, finalize, finally
 - [call by value, call by reference](#user-content-call-by-value-vs-call-by-reference)
 - Collection api설명
@@ -428,6 +428,43 @@ Java SE 8에서 변경되거나 새롭게 추가된 사항들
 ### abstract class
 
 - public , default, protected , private 가능
+
+## String StringBuffer StringBuilder
+
+String
+
+- 불변 객체이다.
+
+- ex) abc -> abcd로 바꿀경우
+
+  ```java
+  String s1 = "abc";
+  String s1 = s1+"d";//기존의 객체를 변경시키는게 아니라 새로 생성
+  ```
+
+- 메모리 오버
+
+  ```java
+  String s1 = "Abc";
+  for(int i=0;i<1000000;i++){
+      s1 += "a";
+  }
+  //GC
+  ```
+
+StringBuilder,StringBuffer
+
+- 가변 객체
+- 연산이 필요할 때 크기를 변경시켜서 문자열을 변경
+  - 문자열 연산이 자주 있을 때 사용하면 성능이 좋음
+- 이 둘의 차이점?
+  - 동기화 여부
+  - StringBuilder(동기화 처리가 x) 
+    - 멀티 쓰레드 환경에 적합하지 않음
+    - 싱글 쓰레드 환경에서는 더 나은 성능을 보임
+  - StringBuffer(동기화 처리가 됨)
+    - 멀티 쓰레드 환경에 안정적
+    - 싱글 쓰레드 환경에서는 StringBuilder에 비해 낮은 성능
 
 
 
