@@ -388,15 +388,6 @@ Java SE 8에서 변경되거나 새롭게 추가된 사항들
 
 ## Interface vs Abstract
 
-|            | interface                                                 | abstract class                                      |
-| ---------- | --------------------------------------------------------- | --------------------------------------------------- |
-| 상속(구현) | 다중 구현 가능                                            | 다중 상속 불가능                                    |
-| 접근제한자 | public, default                                           | public, default, protected                          |
-| 목적       | 서로 관련성이 없는 클래스들을 인터페이스로 묶고 싶은 경우 | 관련성이 높은 클래스 간에 코드를 공유하고 싶은 경우 |
-|            |                                                           | 일반 메소드, 필드 선언 가능                         |
-|            |                                                           |                                                     |
-|            |                                                           |                                                     |
-
 ### interface
 
 - public, default 접근 제한자 가능
@@ -405,6 +396,7 @@ Java SE 8에서 변경되거나 새롭게 추가된 사항들
 
     ```java
     public interface Calculator{
+        public void log();
         default int add(int x, int y){
             return x+y;
         }
@@ -478,4 +470,16 @@ StringBuilder,StringBuffer
 | 메모리 | 복사하기 위한 메모리 공간 필요                               | 기존의 메모리 공간                                           |
 |  장점  | 실제 변수에 어떠한 영향도 미치지 않는다                      | 변수 값을 변경할 수 있다. <br />복사하기 위한 메모리 공간이 필요없다.<br /> |
 |  단점  | 변수에 대해 복사를 해야 하므로 메모리가 효율적이지 않다.     | Null 검사를 해야한다.<br />순수 함수가 아니다.<br />멀티스레드 프로그램에서 위험 요소가 될 수 있다. |
+
+\+추가
+
+Integer, String 등 Object이기 때문에 call by reference가 될 것 같지만, 이들은 불변 객체이기 때문에 인자값을 전달할 때 객체를 복사하여 넘긴다.
+
+```java
+public static void addOne(String str) {
+	System.out.println(str.hashCode());
+	str += "1";//새로운 객체님의 탄생
+	System.out.println(str.hashCode());
+}
+```
 
