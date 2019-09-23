@@ -5,13 +5,14 @@
 - [자바 언어의 특징](#user-content-자바-언어의-특징)
 - [자바 언어 == 객체지향](#user-content-자바-언어와-객체-지향) 
 - [객체 지향 설명 및 절차지향, 함수적 프로그래밍에 대한 설명](#user-content-함수형-프로그래밍)
-- JAVA SE와 EE의 차이점 
+- [JAVA SE와 EE의 차이점](#user-content-java-se-vs-java-ee) 
 - [JRE와 JDK 차이 설명](#user-content-jre-vs-jdk)
 - [Garbage Collection](#user-content-garbage-collection)
-- 컴파일 과정에 대한 설명
-- 자바 1.8을 사용한 이유
-- 자바 1.8버전에서 달라진 점
-- 람다에 장단점
+- [컴파일 과정에 대한 설명](#user-content-java-compile)
+- [자바 1.8버전에서 달라진 점](#user-content-java-se-8)
+  - 람다 표현식
+  - 스트림 api
+  - java.time 패키지
 - 추상화, 인터페이스 설명
 - 접근제한자 설명
 - 다형성 설명
@@ -192,6 +193,54 @@
 
    
 
+
+
+## Java SE vs Java EE
+
+Java 기술은 프로그래밍 언어이자 플랫폼이다.
+
+Java 플랫폼은 Java 프로그래밍 언어 응용 프로그램이 실행되는 특정 환경이다.
+
+플랫폼 종류
+
+- Java SE (Standard Edition)
+
+  - 가장 기본이 되는 플랫폼
+  - SE의 API는 자바 언어의 핵심 기능 들을 제공한다
+  - 기본적인 type부터 object, 네트워킹, 보안, 데이터베이스 엑세스, GUI 등 고급 클래스까지 모든 것을 정의
+  - 핵심 API 외에도 가상 머신, 개발 툴, 배포 기술 및 자바 기술 애플리케이션에서 일반적으로 사용되는 기타 클래스 라이브러리 및 툴킷으로 구성
+
+- Java EE(Enterprise Edition)
+
+  - Java SE 플랫폼이 기초가 된다.
+
+  - 대규모 멀티 계층, 확장성, 신뢰성 및 보안 네트워크 애플리케이션을 개발하고 실행할 수 있는 API 및 런타임 환경이 추가됨.
+
+    > 대규모 멀티 계층이란?
+    >
+    > 응용 프로그램을 클라이언트 계층,웹 계층,비즈니스 계층 등으로 나누는 것.
+    >
+    > 클라이언트 계층 = Java EE 서버에 요청하는 곳(웹 브라우저, 독립형 응용 프로그램 등)
+    >
+    > 웹 계층 = 클라이언트 계층과 비즈니스 계층 간의 상호 작용을 처리하는 곳
+    >
+    > - 클라이언트를 위한 동적인 컨텐츠를 생성
+    > - 클라이언트의 사용자로부터 입력을 수집하고 비즈니스 계층에 리턴
+    > - 클라이언트의 화면 또는 페이지 흐름 제어
+    > - 사용자 세션 데이터 유지
+    > - Servlet, JSP, JSP Expression Language 등의 기술이 사용됨.
+    >
+    > 비즈니스 계층 = 비즈니스 로직이 만들어진 곳
+    >
+    > - EJB, JAX-RS RESTful web service, Java Persistence API Entity 등의 기술이 사용
+    >
+    > 엔터프라이즈 정보 시스템(ELS) 계층
+    >
+    > - 데이터베이스 서버같은 Java EE 서버가 아닌 별도의 시스템
+    > - JDBC, Java Persistence API, Java Transaction API 등의 기술이 사용
+
+
+
 ## JRE vs JDK
 
 JRE (Java Runtime Environment) : 자바 **실행 환경**
@@ -258,9 +307,127 @@ JRE + 개발을 위해 필요한 javac나 java 등을 포함한다
 
 
 
+## Java Compile
+
+<img src="https://t1.daumcdn.net/cfile/tistory/9919763E5C8FB79424"/>
+
+#### 컴파일
+
+프로그래머가 구현한 소스 코드를 컴퓨터가 이해할 수 있는 기계어로 변환시키는 과정을 말한다.
+
+#### 자바 컴파일러
+
+자바 소스를 <u>JVM이 읽을 수 있도록</u> 변형시키는 것
+
+#### 클래스 파일 
+
+자바 컴파일러를 통해서 나온 결과로 JVM이 읽을 수 있도록 <u>번역된 바이트코드</u>
+
+#### 코드가 실행되기 까지의 과정
+
+1. 자바 소스 코드가 컴파일러에 의해서 바이트코드(클래스파일)로 번역됨
+2. JVM의 Class Loader가 해당 클래스 파일을 메모리에 로딩(적재)
+3. 실행 엔진이 메모리(런타임 데이터 영역)에 배치된 바이트코드를 해석하고 실행
 
 
 
+## Java SE 8
+
+Java SE 8에서 변경되거나 새롭게 추가된 사항들
+
+1. 람다 
+
+   -  함수형 프로그래밍을 제공하기 위해 만듬.
+
+   - 사용하면서 느낀 장점
+
+     - 보일러 플레이트 코드(불필요한 선언, 변수)가 필요없다.
+
+       ```java
+       new Thread(new Runnable() {
+           public void run() {
+               System.out.println("전통적인 방식의 일회용 스레드 생성");}}).start();
+       
+       new Thread(()->{
+           System.out.println("람다 표현식을 사용한 일회용 스레드 생성");}).start();
+       ```
+
+     - 코드가 간결해지고 의도를 파악하기 쉽다.
+
+2. 스트림 API : 데이터의 추상화
+
+   - 배열이나 컬렉션 등의 데이터에 접근하기 위해 반복문이나 iterator를 사용해야 함.
+   - 가독성이 떨어지고, 불필요한 선언이 많아짐
+
+   ```java
+   List<String> list = new ArrayList<String>();
+   //리스트 요소 중 길이가 3이상인 요소의 개수 구하기
+   int cnt = 0;		//중간에 변수가 필요
+   for(int i=0;i<list.size();i++){ //i라는 변수가 필요
+       String temp = list.get(i);	//temp라는 변수가 필요
+       if(temp.length() >= 3)
+           cnt++;
+   }
+   System.out.println(cnt);
+   //람다로 표현하면
+   long count = list.stream().filter(s->s.length() > 3).count();
+   System.out.println(count);
+   ```
+
+3. java.time 패키지 : Joda-Time을 이용한 새로운 날짜와 시간 API
+
+   - 기존의 Date나 Calendar 클래스의 단점
+     - Calendat 인스턴스는 가변 객체라서 도중에 값이 수정될 수 있다.
+     - 윤초와 같은 특별한 상황이 고려되지 않음
+     - 월을 나타낼 때 0~11로 표현함
+     - 일관성 없는 요일 상수(1~7), Date는 (0~6)
+   - time 패키지는 이러한 단점들을 보완함.
+     - 불변 객체로 생성
+     - 월을 1~12로 표현
+     - plusDays , minusSeconds 등의 메소드가 있음.
+
+## Interface vs Abstract
+
+|            | interface                                                 | abstract class                                      |
+| ---------- | --------------------------------------------------------- | --------------------------------------------------- |
+| 상속(구현) | 다중 구현 가능                                            | 다중 상속 불가능                                    |
+| 접근제한자 | public, default                                           | public, default, protected                          |
+| 목적       | 서로 관련성이 없는 클래스들을 인터페이스로 묶고 싶은 경우 | 관련성이 높은 클래스 간에 코드를 공유하고 싶은 경우 |
+|            |                                                           | 일반 메소드, 필드 선언 가능                         |
+|            |                                                           |                                                     |
+|            |                                                           |                                                     |
+
+### interface
+
+- public, default 접근 제한자 가능
+
+  - java 8 버전에서는 default가 가능해지면서 interface안에 메소드를 구현할 수 있게 됨.
+
+    ```java
+    public interface Calculator{
+        default int add(int x, int y){
+            return x+y;
+        }
+    }
+    ```
+
+- static 메서드가 가능해짐
+
+  ```java
+  public interface Calculator{
+      public static int add(int x, int y){
+          return x+y;
+      }
+  }
+  ```
+
+- 다중 상속이 가능함
+
+
+
+### abstract class
+
+- public , default, protected , private 가능
 
 
 
